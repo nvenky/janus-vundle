@@ -1,372 +1,162 @@
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-scriptease'
-Bundle 'gregsexton/gitv'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'mbbill/code_complete'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-Bundle 'mileszs/ack.vim'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'endwise.vim'
-Bundle 'matchit.zip'
-Bundle 'textobj-user'
-Bundle 'textobj-rubyblock'
-Bundle 'unimpaired.vim'
-Bundle 'errormarker.vim'
-Bundle 'abolish.vim'
-Bundle 'camelcasemotion'
-" Bundle 'lukerandall/haskellmode-vim'
-" Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/ZoomWin'
-Bundle 'rorymckinley/vim-symbols-strings'
-Bundle 'pangloss/vim-javascript'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'skalnik/vim-vroom'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'siliconsenthil/vim-rspec'
-Bundle 'jgdavey/tslime.vim'
-Bundle 'zerowidth/vim-copy-as-rtf'
-Bundle 'Yggdroot/indentLine'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" Colors
+Plugin 'vim-scripts/Colour-Sampler-Pack'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'twerth/ir_black'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'vim-scripts/molokai'
+Plugin 'vim-scripts/pyte'
+Plugin 'telamon/vim-color-github'
+Plugin 'larssmit/vim-getafe'
+Plugin 'TechnoGate/janus-colors'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'chriskempson/base16-vim'
+Plugin 'railscasts' "My favourite color scheme
 
-" Color scheme
-Bundle 'railscasts'
-runtime macros/matchit.vim
-autocmd FileType haskell compiler hlint
-:set lazyredraw
-highlight diffAdded guifg=#00bf00
-highlight diffRemoved guifg=#bf0000
+" Langs
+Plugin 'tpope/vim-haml'
+Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-markdown'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'ajf/puppet-vim'
+Plugin 'rosstimson/scala-vim-support'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-git'
+Plugin 'timcharper/textile.vim'
+Plugin 'skwp/vim-rspec'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'chrisbra/csv.vim'
+Plugin 'mmalecki/vim-node.js'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/Arduino-syntax-file'
+Plugin 'groenewege/vim-less'
+Plugin 'wlangstroth/vim-haskell'
+Plugin 'slim-template/vim-slim'
+Plugin 'jimenezrick/vimerl'
+Plugin 'sunaku/vim-ruby-minitest'
+Plugin 'guns/vim-clojure-static'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'tpope/vim-liquid'
+Plugin 'depuracao/vim-rdoc'
 
-:imap jj <Esc>
+" Tools
+Plugin 'tpope/vim-unimpaired'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'edsono/vim-matchit'
+Plugin 'ervandew/supertab'
+Plugin 'itspriddle/ZoomWin'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'tpope/vim-endwise'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'ap/vim-css-color'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'chrisbra/NrrwRgn'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'rgarver/Kwbd.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'skalnik/vim-vroom'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-repeat'
+Plugin 'honza/vim-snippets'
+Plugin 'tpope/vim-dispatch'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'thinca/vim-visualstar'
+Plugin 'bronson/vim-trailing-whitespace'
 
-let g:indentLine_fileType=['haml']
+"Other Plugins
+Plugin 'tpope/vim-pathogen'
+Plugin 'wincent/command-t'
+"Create code snippets like ~/.vim/snippets/foo.snippet
+Plugin 'msanders/snipmate.vim'
 
-"
-"
-" based on
-" http://github.com/jferris/config_files/blob/mastextras/credit_pending_referrals.rb
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-set nobackup
-set nowritebackup
-set noswapfile
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" This is an alternative that also works in block mode, but the deleted
-" text is lost and it only works for putting the current register.
-"vnoremap p "_dp
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
-
-" Switch wrap off for everything
-set nowrap
-
-function! <SID>Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
 
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+" CUSTOM CONFIGS
+let mapleader = ","  "\ is the default leader character
 
-  " Set File type to 'text' for files ending in .txt
-  autocmd BufNewFile,BufRead *.txt setfiletype text
+syntax on
+colorscheme railscasts
 
-  " Enable soft-wrapping for text files
-  autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  " autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  " Automatically load .vimrc source when saved
-  autocmd BufWritePost .vimrc source $MYVIMRC
-
-  augroup END
-
-  " Remove trailing whitespace on save
-  autocmd BufWritePre *.rb,*.html.erb,*.html.haml,*.js :call <SID>Preserve("%s/\\s\\+$//e")
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-" if has("folding")
-  " set foldenable
-  " set foldmethod=syntax
-  " set foldlevel=1
-  " set foldnestmax=2
-  " set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-" endif
-
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set expandtab
-
-" Always display the status line
-set laststatus=2
-
-" \ is the leader character
-let mapleader = ","
-
-nmap <leader>gL :Gitv<cr>
-nmap <leader>gl :Gitv!<cr>
-vmap <leader>gl :Gitv!<cr>
-
-" Edit the README_FOR_APP (makes :R commands work)
-map <Leader>R :e doc/README_FOR_APP<CR>
-
-" Leader shortcuts for Rails commands
-map <Leader>m :Rmodel 
-map <Leader>c :Rcontroller 
-map <Leader>v :Rview 
-map <Leader>u :Runittest 
-map <Leader>f :Rfunctionaltest 
-map <Leader>tm :RTmodel 
-map <Leader>tc :RTcontroller 
-map <Leader>tv :RTview 
-map <Leader>tu :RTunittest 
-map <Leader>tf :RTfunctionaltest 
-map <Leader>sm :RSmodel 
-map <Leader>sc :RScontroller 
-map <Leader>sv :RSview 
-map <Leader>su :RSunittest 
-map <Leader>sf :RSfunctionaltest 
-map <Leader>rt :Rake<CR>
-
-map <Leader>a :Ack 
-map <Leader>x :call <SID>Preserve("%s/\\s\\+$//e")<CR>
-
-" Leader shortcuts for Fugitive commands
-map <Leader>gb :Gblame C<CR>
-map <Leader>gd :Gdiff<CR>
-map <Leader>gs :Gstatus<CR>
-map <Leader>gc :GCommit<CR>
-
-" Leader shortcuts for Fuf commands
-map <Leader>fb :FufBuffer<CR>
-map <Leader>ff :FufCoverageFile<CR>
-map <Leader>ft :FufTag<CR>
-map <Leader>fc :FufChangeList<CR>
-map <Leader>fj :FufJumpList<CR>
-map <Leader>fm :FufBufferTag<CR>
-map <Leader>fk :FufBookmarkFile<CR>
-map <Leader>fa :FufBookmarkFileAdd<CR>
-map <Leader>fq :FufQuickFix<CR>
-map <Leader>fx :!ctags -R *<CR>
-map <Leader><Leader> :ZoomWin<CR>
-
+"SHORTCUTS
 " NERDTree mappings
 nmap <Leader>n :NERDTreeToggle<CR>
-nmap <Leader>N :NERDTreeFind<CR> 
+nmap <Leader>N :NERDTreeFind<CR>
 
-" vim-rspec mappings
-map <Leader>sf :call RunCurrentSpecFile()<CR>
-map <Leader>ss :call RunNearestSpec()<CR>
-map <Leader>sl :call RunLastSpec()<CR>
-map <Leader>sa :call RunAllSpecs()<CR>
-" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" http://nvie.com/posts/how-i-boosted-my-vim/
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
-
-
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Move lines up and down
-map <C-J> :m +1 <CR>
-map <C-K> :m -2 <CR>
-"Mapping Ctrl+s to save
-map <C-s>  :w <CR>
-imap <C-s> <Esc> :w <CR>
-
-" copies line without newline. So, yank line n paste will not insert as a new
-" line
-map ly ^y$
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Duplicate a selection
-" Visual mode: D
-vmap D y'>o<Esc>p
-
-" Select and tab to indent
-vmap <Tab> >gv
-vmap <S-Tab> <gv
-
-" Press Shift+P while in visual mode to replace the selection without
-" overwriting the default register
-vmap P p :call setreg('"', getreg('0')) <CR>
-
-" For Haml
-au! BufRead,BufNewFile *.haml         setfiletype haml
-
-" No Help, please
-nmap <F1> <Esc>
-
-" Press ^F from insert mode to insert the current file name
-imap <C-F> <C-R>=expand("%")<CR>
-
-" Maps autocomplete to tab
-" imap <Tab> <C-N>
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-imap <Tab> <C-R>=Tab_Or_Complete()<CR>
-
-imap <C-L> <Space>=><Space>
-
-" Display extra whitespace
-" set list listchars=tab:»·,trail:·
-
-" Edit routes
-command! Rroutes :e config/routes.rb
-command! Rschema :e db/schema.rb
-
-" Local config
-if filereadable(".vimrc.local")
-  source .vimrc.local
-endif
-
-" Color scheme
-" colorscheme vividchalk
-" highlight NonText guibg=#060606
-" highlight Folded  guibg=#0A0A0A guifg=#9090D0
-
-" Numbers
-set number
-set numberwidth=5
-
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
-
-" Tab completion options
-" (only complete to the longest unambiguous match, and show a menu)
-set completeopt=longest,menu
-set wildmode=list:longest,list:full
-set complete=.,t
-
-" case only matters with mixed case expressions
-set ignorecase
-set smartcase
-
-" Tags
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-set tags=./tags;
-
-let g:fuf_splitPathMatching=1
-
-let g:ackprg="ack -H --nocolor --nogroup --column"
 set hidden
-set guioptions-=m
-set guioptions-=T
 
-autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
-autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
-highlight EOLWS ctermbg=blue guibg=blue
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-set shortmess=atI
-let g:miniBufExplMapCTabSwitchBufs = 1
+set nowrap        " don't wrap lines
+set tabstop=4     " a tab is four spaces
+set backspace=indent,eol,start
+                    " allow backspacing over everything in insert mode
+set autoindent    " always set autoindenting on
+set copyindent    " copy the previous indentation on autoindenting
+set number        " always show line numbers
+set shiftwidth=4  " number of spaces to use for autoindenting
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+set nobackup
+set noswapfile
 
-set ofu=syntaxcomplete#Complete
-set completeopt+=longest,menuone
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-u>"
-let g:SuperTabLongestEnhanced=1
-:highlight Pmenu guibg=brown gui=bold
+" Easy window navigation
+" Alt+leftarrow will go one window left, etc.
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 
-au Bufenter *.hs compiler ghc
-
-let g:haddock_browser = "/usr/bin/google-chrome"
-let g:ghc = "/usr/bin/ghc"
-let g:haddock_browser_callformat = "%s %s"
-let g:haddock_docdir = "/usr/share/doc/ghc6-doc/html/"
-let g:syntastic_enable_signs=1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:Powerline_symbols = 'fancy'
-
-:filetype plugin on
-:nmap <c-tab> :bnext<cr>
-:nmap <c-s-tab> :bprevious<cr>
+" quickly resize windows with a vertical split:
+:map - <C-W>-
+:map + <C-W>+
 
 
+"clearing highlighted searches
+nmap <silent> <leader>/ :nohlsearch<CR>
 
-autocmd BufReadPost fugitive://* set bufhidden=delete
 
-set autowriteall
-
-let g:fuf_patternSeparator = ';'
-colorscheme railscasts
-" set guifont=Inconsolata\ for\ Powerline:h15
