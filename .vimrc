@@ -21,7 +21,7 @@ Plugin 'larssmit/vim-getafe'
 Plugin 'TechnoGate/janus-colors'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'chriskempson/base16-vim'
-Plugin 'railscasts' "My favourite color scheme
+Plugin 'railscasts' 
 
 " Langs
 Plugin 'tpope/vim-haml'
